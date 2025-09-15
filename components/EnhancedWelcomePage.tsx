@@ -382,7 +382,7 @@ export default function EnhancedWelcomePage({ onGetStarted }: EnhancedWelcomePag
                         end={stat.value}
                         duration={2.5}
                         delay={index * 0.1}
-                        decimals={stat.decimals || 0}
+                        decimals={0}
                       />
                     )}
                     {stat.suffix}
