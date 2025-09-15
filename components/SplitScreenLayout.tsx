@@ -168,8 +168,6 @@ export default function SplitScreenLayout({ children, currentStep, totalSteps, p
   // Ensure we always have valid content, defaulting to step 0
   const content = stepContent[currentStep >= 0 ? currentStep : 0] || stepContent[0]
   const Icon = content.icon
-  
-  console.log('SplitScreenLayout render - currentStep:', currentStep, 'content:', content.title)
 
   // Animated progress ring
   const progressSpring = useSpring({
