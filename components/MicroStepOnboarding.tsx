@@ -29,6 +29,8 @@ interface MicroStep {
 
 interface MicroStepOnboardingProps {
   onComplete: (data: Record<string, any>) => void
+  onBackToWelcome?: () => void
+  onStepChange?: (step: number) => void
 }
 
 const microSteps: MicroStep[] = [
@@ -178,13 +180,18 @@ const microSteps: MicroStep[] = [
   }
 ]
 
-export default function MicroStepOnboarding({ onComplete }: MicroStepOnboardingProps) {
+export default function MicroStepOnboarding({ onComplete, onBackToWelcome, onStepChange }: MicroStepOnboardingProps) {
   const [currentStepIndex, setCurrentStepIndex] = useState(0)
   const [answers, setAnswers] = useState<Record<string, any>>({})
   const [isComplete, setIsComplete] = useState(false)
 
   const currentStep = microSteps[currentStepIndex]
   const progress = ((currentStepIndex + 1) / microSteps.length) * 100
+
+  // Notify parent of step changes
+  useEffect(() => {
+    onStepChange?.(currentStepIndex)
+  }, [currentStepIndex, onStepChange])
 
   // Spring animation for progress and step transitions
   const slideSpring = useSpring({
@@ -234,7 +241,7 @@ export default function MicroStepOnboarding({ onComplete }: MicroStepOnboardingP
 
   if (isComplete) {
     return (
-      <div className="h-full flex items-center justify-center p-12">
+      <div className="h-full flex flex-col items-center justify-center p-12 relative">
         <motion.div
           initial={{ scale: 0, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
@@ -266,12 +273,23 @@ export default function MicroStepOnboarding({ onComplete }: MicroStepOnboardingP
             Welcome to your investment journey
           </motion.p>
         </motion.div>
+        
+        {/* Back to Welcome Button */}
+        <motion.button
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.6 }}
+          onClick={onBackToWelcome}
+          className="absolute bottom-8 right-8 px-6 py-3 bg-primary-600 text-white font-semibold rounded-xl hover:bg-primary-700 transition-colors cursor-pointer"
+        >
+          Back to Welcome
+        </motion.button>
       </div>
     )
   }
 
   return (
-    <div className="h-full flex flex-col">
+    <div className="h-full flex flex-col relative">
       {/* Progress Bar */}
       <div className="p-8 pb-4">
         <div className="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
@@ -304,7 +322,7 @@ export default function MicroStepOnboarding({ onComplete }: MicroStepOnboardingP
               transition={{ delay: 0.1 }}
               className="mb-12"
             >
-              <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4 leading-tight">
+              <h1 className="text-4xl lg:text-5xl font-bold mb-4 leading-tight" style={{ color: '#1E3A8A' }}>
                 {currentStep.title}
               </h1>
               <p className="text-xl text-gray-600">
@@ -443,9 +461,18 @@ export default function MicroStepOnboarding({ onComplete }: MicroStepOnboardingP
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={handleBack}
-                  className="px-8 py-4 text-gray-600 hover:text-gray-900 font-medium transition-colors"
+                  className="px-8 py-4 text-gray-600 hover:text-gray-900 font-medium transition-colors cursor-pointer"
                 >
                   ← Back
+                </motion.button>
+              ) : onBackToWelcome ? (
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={onBackToWelcome}
+                  className="px-8 py-4 text-gray-600 hover:text-gray-900 font-medium transition-colors cursor-pointer"
+                >
+                  ← Back to Welcome
                 </motion.button>
               ) : (
                 <div />

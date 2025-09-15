@@ -11,8 +11,7 @@ import {
   ClockIcon,
   UserGroupIcon,
   ChartBarIcon,
-  CheckCircleIcon,
-  PlayIcon
+  CheckCircleIcon
 } from '@heroicons/react/24/outline'
 
 interface EnhancedWelcomePageProps {
@@ -21,27 +20,27 @@ interface EnhancedWelcomePageProps {
 
 const features = [
   {
-    icon: ClockIcon,
-    title: "Save 4+ Hours",
-    description: "Complete onboarding in minutes, not hours",
+    icon: ChartBarIcon,
+    title: "Structured Products",
+    description: "Tailored investments with defined returns over specific periods",
     color: "from-blue-500 to-cyan-500"
   },
   {
     icon: ShieldCheckIcon,
-    title: "Bank-Grade Security",
-    description: "Your data is protected with 256-bit encryption",
+    title: "Regulatory Compliance",
+    description: "FCA regulated with adherence to highest industry standards",
     color: "from-green-500 to-emerald-500"
   },
   {
     icon: UserGroupIcon,
-    title: "12,000+ Clients",
-    description: "Trusted by thousands of investors worldwide",
+    title: "Institutional Grade",
+    description: "Serving both individual and institutional investors",
     color: "from-purple-500 to-pink-500"
   },
   {
-    icon: ChartBarIcon,
-    title: "98% Success Rate",
-    description: "Industry-leading investment performance",
+    icon: SparklesIcon,
+    title: "Bespoke Solutions",
+    description: "Custom investment strategies aligned with your objectives",
     color: "from-orange-500 to-red-500"
   }
 ]
@@ -49,32 +48,32 @@ const features = [
 const testimonials = [
   {
     name: "Sarah Johnson",
-    role: "Investment Manager",
+    role: "Wealth Manager",
     avatar: "SJ",
-    quote: "The onboarding process was incredibly smooth and professional. Highly recommended!",
+    quote: "Hilbert's structured products offer the perfect balance of capital protection and growth potential.",
     rating: 5
   },
   {
     name: "Michael Chen",
-    role: "Financial Advisor", 
+    role: "Investment Advisor", 
     avatar: "MC",
-    quote: "Hilbert's platform has streamlined our client onboarding by 80%. Game changer!",
+    quote: "Their transparency and client education approach sets Hilbert apart in structured products.",
     rating: 5
   },
   {
     name: "Emma Wilson",
-    role: "Portfolio Manager",
+    role: "Institutional Investor",
     avatar: "EW", 
-    quote: "Best investment platform I've used. The interface is intuitive and powerful.",
+    quote: "Exceptional bespoke solutions tailored to our specific investment objectives.",
     rating: 5
   }
 ]
 
 const stats = [
-  { value: 12000, label: "Happy Clients", suffix: "+" },
-  { value: 98, label: "Success Rate", suffix: "%" },
-  { value: 4.9, label: "Average Rating", decimals: 1 },
-  { value: 250, label: "Investment Products", suffix: "+" }
+  { value: 12000, label: "Clients Served", suffix: "+" },
+  { value: 150, label: "Structured Products", suffix: "+" },
+  { value: 95, label: "Capital Protection", suffix: "%" },
+  { value: 15, label: "Years Experience", suffix: "+" }
 ]
 
 export default function EnhancedWelcomePage({ onGetStarted }: EnhancedWelcomePageProps) {
@@ -181,105 +180,12 @@ export default function EnhancedWelcomePage({ onGetStarted }: EnhancedWelcomePag
         <section className="px-6 py-16">
           <div className="max-w-7xl mx-auto">
             <div className="grid lg:grid-cols-2 gap-16 items-center">
-              {/* Left Column */}
-              <animated.div style={heroSpring} className="space-y-8">
-                {/* Badge */}
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 0.4, type: "spring" }}
-                  className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-primary-100 to-purple-100 text-primary-700 rounded-full text-sm font-medium"
-                >
-                  <SparklesIcon className="w-4 h-4 mr-2" />
-                  Now with AI-Powered Recommendations
-                </motion.div>
-
-                {/* Main Heading */}
-                <motion.div
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.6 }}
-                  className="space-y-6"
-                >
-                  <h1 className="text-5xl lg:text-7xl font-bold text-gray-900 leading-tight">
-                    Invest
-                    <span className="bg-gradient-to-r from-primary-600 via-purple-600 to-pink-600 bg-clip-text text-transparent"> Smarter</span>
-                    <br />
-                    Start <span className="text-green-500">Faster</span>
-                  </h1>
-                  
-                  <p className="text-xl lg:text-2xl text-gray-600 leading-relaxed max-w-2xl">
-                    Complete your investment onboarding in{' '}
-                    <span className="font-semibold text-primary-600">under 5 minutes</span>.
-                    Join thousands of investors who chose simplicity without compromise.
-                  </p>
-                </motion.div>
-
-                {/* CTA Buttons */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.8 }}
-                  className="flex flex-col sm:flex-row gap-4"
-                >
-                  <motion.button
-                    whileHover={{ 
-                      scale: 1.05, 
-                      boxShadow: "0 20px 40px rgba(99, 102, 241, 0.4)" 
-                    }}
-                    whileTap={{ scale: 0.95 }}
-                    onClick={onGetStarted}
-                    className="group px-8 py-6 bg-gradient-to-r from-primary-600 to-purple-600 text-white font-bold text-lg rounded-2xl shadow-2xl hover:shadow-3xl transition-all duration-300"
-                  >
-                    <span className="flex items-center justify-center space-x-3">
-                      <span>Start Your Journey</span>
-                      <motion.div
-                        animate={{ x: [0, 5, 0] }}
-                        transition={{ duration: 1.5, repeat: Infinity }}
-                      >
-                        <ArrowRightIcon className="w-6 h-6" />
-                      </motion.div>
-                    </span>
-                  </motion.button>
-
-                  <motion.button
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    className="flex items-center justify-center space-x-3 px-8 py-6 bg-white border-2 border-gray-200 text-gray-700 font-semibold text-lg rounded-2xl hover:border-primary-300 hover:bg-gray-50 transition-all duration-200"
-                  >
-                    <PlayIcon className="w-6 h-6" />
-                    <span>Watch Demo</span>
-                  </motion.button>
-                </motion.div>
-
-                {/* Trust Indicators */}
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 1 }}
-                  className="flex flex-wrap items-center gap-4 pt-4"
-                >
-                  <div className="flex items-center space-x-2">
-                    <ShieldCheckIcon className="w-5 h-5 text-green-500" />
-                    <span className="text-sm text-gray-600 font-medium">FCA Regulated</span>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <CheckCircleIcon className="w-5 h-5 text-green-500" />
-                    <span className="text-sm text-gray-600 font-medium">GDPR Compliant</span>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <ShieldCheckIcon className="w-5 h-5 text-green-500" />
-                    <span className="text-sm text-gray-600 font-medium">Bank-Grade Security</span>
-                  </div>
-                </motion.div>
-              </animated.div>
-
-              {/* Right Column - Interactive Demo */}
+              {/* Left Column - Interactive Demo */}
               <motion.div
-                initial={{ opacity: 0, x: 50, scale: 0.8 }}
+                initial={{ opacity: 0, x: -50, scale: 0.8 }}
                 animate={{ opacity: 1, x: 0, scale: 1 }}
                 transition={{ delay: 0.4, type: "spring", stiffness: 100 }}
-                className="relative"
+                className="relative lg:order-1"
               >
                 <div className="relative bg-white rounded-3xl shadow-2xl p-8 border">
                   {/* Demo Progress */}
@@ -301,11 +207,11 @@ export default function EnhancedWelcomePage({ onGetStarted }: EnhancedWelcomePag
                   {/* Demo Question */}
                   <div className="space-y-4">
                     <h3 className="text-xl font-bold text-gray-900">
-                      What type of investor are you?
+                      What type of client are you?
                     </h3>
                     
                     <div className="space-y-3">
-                      {['Conservative Investor', 'Balanced Portfolio', 'Growth Focused'].map((option, index) => (
+                      {['Individual Investor', 'Corporate Client', 'Institutional Investor'].map((option, index) => (
                         <motion.div
                           key={option}
                           initial={{ opacity: 0, x: 20 }}
@@ -341,7 +247,7 @@ export default function EnhancedWelcomePage({ onGetStarted }: EnhancedWelcomePag
                       transition={{ delay: 2.2 }}
                       className="w-full mt-4 px-6 py-3 bg-primary-600 text-white font-semibold rounded-xl hover:bg-primary-700 transition-colors"
                     >
-                      Continue →
+                      Start your journey →
                     </motion.button>
                   </div>
 
@@ -358,6 +264,90 @@ export default function EnhancedWelcomePage({ onGetStarted }: EnhancedWelcomePag
                   </motion.div>
                 </div>
               </motion.div>
+
+              {/* Right Column - Text Content */}
+              <animated.div style={heroSpring} className="space-y-8 lg:order-2">
+                {/* Badge */}
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.4, type: "spring" }}
+                  className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-primary-100 to-purple-100 text-primary-700 rounded-full text-sm font-medium"
+                >
+                  <SparklesIcon className="w-4 h-4 mr-2" />
+                  FCA Regulated • Structured Products Specialist
+                </motion.div>
+
+                {/* Main Heading */}
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.6 }}
+                  className="space-y-6"
+                >
+                  <h1 className="text-5xl lg:text-7xl font-bold text-gray-900 leading-tight">
+                    Structured
+                    <span className="bg-gradient-to-r from-primary-600 via-purple-600 to-pink-600 bg-clip-text text-transparent"> Products</span>
+                    <br />
+                    <span style={{ color: '#0066FF' }}>Simplified</span>
+                  </h1>
+                  
+                  <p className="text-xl lg:text-2xl text-gray-600 leading-relaxed max-w-2xl">
+                    Access bespoke investment solutions with{' '}
+                    <span className="font-semibold text-primary-600">defined returns</span>.
+                    Join institutional and individual investors who trust Hilbert's transparency and expertise.
+                  </p>
+                </motion.div>
+
+                {/* CTA Buttons */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.8 }}
+                  className="flex flex-col sm:flex-row gap-4"
+                >
+                  <motion.button
+                    whileHover={{ 
+                      scale: 1.05, 
+                      boxShadow: "0 20px 40px rgba(99, 102, 241, 0.4)" 
+                    }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={onGetStarted}
+                    className="group px-8 py-6 bg-gradient-to-r from-primary-600 to-purple-600 text-white font-bold text-lg rounded-2xl shadow-2xl hover:shadow-3xl transition-all duration-300"
+                  >
+                    <span className="flex items-center justify-center space-x-3">
+                      <span>Start Your Journey</span>
+                      <motion.div
+                        animate={{ x: [0, 5, 0] }}
+                        transition={{ duration: 1.5, repeat: Infinity }}
+                      >
+                        <ArrowRightIcon className="w-6 h-6" />
+                      </motion.div>
+                    </span>
+                  </motion.button>
+                </motion.div>
+
+                {/* Trust Indicators */}
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 1 }}
+                  className="flex flex-wrap items-center gap-4 pt-4"
+                >
+                  <div className="flex items-center space-x-2">
+                    <ShieldCheckIcon className="w-5 h-5 text-green-500" />
+                    <span className="text-sm text-gray-600 font-medium">FCA Authorized</span>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <CheckCircleIcon className="w-5 h-5 text-green-500" />
+                    <span className="text-sm text-gray-600 font-medium">Client Asset Protection</span>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <SparklesIcon className="w-5 h-5 text-green-500" />
+                    <span className="text-sm text-gray-600 font-medium">Structured Products Specialist</span>
+                  </div>
+                </motion.div>
+              </animated.div>
             </div>
           </div>
         </section>
@@ -400,11 +390,11 @@ export default function EnhancedWelcomePage({ onGetStarted }: EnhancedWelcomePag
               transition={{ delay: 0.8 }}
               className="text-center mb-16"
             >
-              <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
-                Why Choose Hilbert?
+              <h2 className="text-4xl lg:text-5xl font-bold mb-6" style={{ color: '#0066FF' }}>
+                Why Choose Hilbert Investment Solutions?
               </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                Experience the future of investment onboarding with our cutting-edge platform
+                Experience transparency, expertise, and regulatory excellence in structured product investments
               </p>
             </motion.div>
 

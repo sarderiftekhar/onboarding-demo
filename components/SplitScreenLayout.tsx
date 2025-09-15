@@ -34,66 +34,131 @@ const stepContent: LeftPanelContent[] = [
   {
     step: 0,
     title: "Welcome to Hilbert",
-    subtitle: "Exceptional Financial Solutions",
-    description: "Join thousands of satisfied clients who trust us with their financial future. Start your journey today.",
+    subtitle: "Exceptional Investment Solutions",
+    description: "Leading provider of structured products and innovative investment solutions. Join thousands of satisfied clients who trust us with their financial future and wealth management needs.",
     stats: [
       { value: 12000, label: "Happy Clients", suffix: "+" },
-      { value: 98, label: "Success Rate", suffix: "%" },
-      { value: 5, label: "Years Experience", suffix: "+" }
+      { value: 98.0, label: "Success Rate", suffix: "%" },
+      { value: 15, label: "Years Experience", suffix: "+" }
     ],
-    features: ["GDPR Compliant", "Bank-grade Security", "24/7 Support"],
+    features: ["FCA Regulated", "Institutional Grade Security", "Dedicated Relationship Managers"],
     gradient: "from-purple-600 via-blue-600 to-indigo-600",
     icon: SparklesIcon
   },
   {
     step: 1,
-    title: "Client Selection",
-    subtitle: "Choose Your Profile",
-    description: "Select your client profile to personalize your investment journey and ensure we provide the most suitable options.",
+    title: "Client Profiling",
+    subtitle: "Tailored Investment Approach",
+    description: "We customize our investment solutions based on your profile, whether you're an individual investor or corporate client seeking structured products and portfolio diversification.",
     stats: [
-      { value: 50, label: "Investment Options", suffix: "+" },
-      { value: 15, label: "Avg Setup Time", suffix: " min" }
+      { value: 150, label: "Structured Products", suffix: "+" },
+      { value: 10, label: "Avg Setup Time", suffix: " min" }
     ],
-    features: ["Personalized Experience", "Smart Matching", "Instant Setup"],
+    features: ["Risk Assessment", "Suitability Analysis", "Regulatory Compliance"],
     gradient: "from-green-500 via-emerald-500 to-teal-600",
     icon: UserGroupIcon
   },
   {
     step: 2,
-    title: "Account Setup",
-    subtitle: "Secure & Simple",
-    description: "Your account security is our priority. We use advanced encryption and follow strict compliance protocols.",
+    title: "Secure Account Setup",
+    subtitle: "FCA Regulated Platform",
+    description: "Your investments are protected by industry-leading security measures and regulatory compliance. We maintain the highest standards for client asset protection and data security.",
     stats: [
       { value: 256, label: "Bit Encryption", suffix: "-bit" },
-      { value: 99.9, label: "Uptime", suffix: "%" }
+      { value: 99.9, label: "Platform Uptime", suffix: "%" }
     ],
-    features: ["Advanced Security", "Instant Verification", "Backup Recovery"],
+    features: ["FCA Authorized", "Client Asset Protection", "Secure Trading Platform"],
     gradient: "from-orange-500 via-red-500 to-pink-600",
     icon: ShieldCheckIcon
   },
   {
     step: 3,
-    title: "Investment Products",
-    subtitle: "Curated Selection",
-    description: "Explore our carefully curated investment products designed to match your risk profile and financial goals.",
+    title: "Structured Products",
+    subtitle: "Capital Protection & Growth",
+    description: "Access our comprehensive range of structured products, including capital-protected investments, autocalls, and multi-asset solutions designed for sophisticated investors.",
     stats: [
-      { value: 200, label: "Products Available", suffix: "+" },
-      { value: 8.5, label: "Avg Annual Return", suffix: "%" }
+      { value: 200, label: "Investment Products", suffix: "+" },
+      { value: 95, label: "Capital Protection", suffix: "%" }
     ],
-    features: ["Risk Assessment", "Smart Recommendations", "Real-time Tracking"],
+    features: ["Autocall Products", "Multi-Asset Solutions", "Capital Protection"],
     gradient: "from-blue-500 via-indigo-500 to-purple-600",
     icon: ChartBarIcon
   },
   {
     step: 4,
-    title: "Final Review",
-    subtitle: "Almost There!",
-    description: "Review your selections and complete your onboarding. You're just moments away from starting your investment journey.",
+    title: "Investment Amount",
+    subtitle: "Capital Allocation",
+    description: "Determine your investment amount and ensure it aligns with your financial objectives and risk tolerance. Our platform supports flexible investment sizes.",
     stats: [
-      { value: 3, label: "Minutes Left", suffix: " min" },
-      { value: 95, label: "Complete", suffix: "%" }
+      { value: 1000, label: "Minimum Investment", suffix: "£" },
+      { value: 24, label: "Settlement Time", suffix: " hrs" }
     ],
-    features: ["Final Verification", "Instant Activation", "Welcome Package"],
+    features: ["Flexible Amounts", "Instant Calculations", "Risk Monitoring"],
+    gradient: "from-cyan-500 via-blue-500 to-indigo-600",
+    icon: ChartBarIcon
+  },
+  {
+    step: 5,
+    title: "Product Selection",
+    subtitle: "Investment Categories",
+    description: "Choose from our range of structured products, investment funds, and fixed income solutions. Each category is designed to meet different investment objectives.",
+    stats: [
+      { value: 85, label: "Product Categories", suffix: "+" },
+      { value: 12.5, label: "Avg Performance", suffix: "%" }
+    ],
+    features: ["Structured Products", "Diversified Funds", "Fixed Income"],
+    gradient: "from-violet-500 via-purple-500 to-indigo-600",
+    icon: SparklesIcon
+  },
+  {
+    step: 6,
+    title: "Specific Products",
+    subtitle: "Tailored Recommendations",
+    description: "Based on your profile and preferences, we've selected products that match your investment criteria. Review our recommendations and make your choice.",
+    stats: [
+      { value: 6.5, label: "Potential Return", suffix: "%" },
+      { value: 95, label: "Capital Protection", suffix: "%" }
+    ],
+    features: ["Expert Curation", "Risk Matched", "Performance History"],
+    gradient: "from-teal-500 via-cyan-500 to-blue-600",
+    icon: ChartBarIcon
+  },
+  {
+    step: 7,
+    title: "Tax Efficiency",
+    subtitle: "ISA & Tax Wrappers",
+    description: "Maximize your returns with tax-efficient investing through ISA allowances and other tax wrappers available to UK investors.",
+    stats: [
+      { value: 20000, label: "ISA Allowance", suffix: "£" },
+      { value: 40, label: "Tax Savings", suffix: "%" }
+    ],
+    features: ["ISA Optimization", "Tax Planning", "Allowance Tracking"],
+    gradient: "from-amber-500 via-orange-500 to-red-600",
+    icon: ShieldCheckIcon
+  },
+  {
+    step: 8,
+    title: "Fee Structure",
+    subtitle: "Transparent Pricing",
+    description: "Set your adviser fee and review all costs associated with your investment. We believe in complete transparency with no hidden fees.",
+    stats: [
+      { value: 1.5, label: "Standard Fee", suffix: "%" },
+      { value: 0, label: "Hidden Costs", suffix: "" }
+    ],
+    features: ["Transparent Fees", "Flexible Pricing", "No Hidden Costs"],
+    gradient: "from-lime-500 via-green-500 to-emerald-600",
+    icon: CheckCircleIcon
+  },
+  {
+    step: 9,
+    title: "Final Confirmation",
+    subtitle: "Investment Ready",
+    description: "Review all your selections and confirm your suitability assessment. You're almost ready to begin your investment journey with Hilbert.",
+    stats: [
+      { value: 2, label: "Business Days", suffix: " days" },
+      { value: 100, label: "Setup Complete", suffix: "%" }
+    ],
+    features: ["Final Review", "Suitability Confirmed", "Investment Ready"],
     gradient: "from-emerald-500 via-green-500 to-lime-600",
     icon: CheckCircleIcon
   }
