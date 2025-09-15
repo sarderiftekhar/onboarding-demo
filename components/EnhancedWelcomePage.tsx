@@ -1,7 +1,7 @@
 'use client'
 
-import { useState, useEffect } from 'react'
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { useState, useEffect, useRef } from 'react'
+import { motion, useScroll, useTransform, useInView } from 'framer-motion'
 import { useSpring, animated, config } from '@react-spring/web'
 import CountUp from 'react-countup'
 import { 
@@ -79,6 +79,14 @@ const stats = [
 export default function EnhancedWelcomePage({ onGetStarted }: EnhancedWelcomePageProps) {
   const [isLoaded, setIsLoaded] = useState(false)
   const [currentTestimonial, setCurrentTestimonial] = useState(0)
+  
+  // Refs for scroll-triggered animations
+  const statsRef = useRef(null)
+  const featuresRef = useRef(null)
+  
+  // InView hooks for scroll animations
+  const isStatsInView = useInView(statsRef, { once: true, margin: "-100px" })
+  const isFeaturesInView = useInView(featuresRef, { once: true, margin: "-100px" })
 
   useEffect(() => {
     setIsLoaded(true)
@@ -99,12 +107,6 @@ export default function EnhancedWelcomePage({ onGetStarted }: EnhancedWelcomePag
     delay: 200,
   })
 
-  const statsSpring = useSpring({
-    opacity: isLoaded ? 1 : 0,
-    transform: isLoaded ? 'scale(1)' : 'scale(0.8)',
-    config: config.wobbly,
-    delay: 800,
-  })
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-50 relative overflow-hidden">
@@ -286,9 +288,9 @@ export default function EnhancedWelcomePage({ onGetStarted }: EnhancedWelcomePag
                 >
                   <h1 className="text-5xl lg:text-7xl font-bold text-gray-900 leading-tight">
                     Structured
-                    <span className="bg-gradient-to-r from-primary-600 via-purple-600 to-pink-600 bg-clip-text text-transparent"> Products</span>
+                    <span style={{ color: '#0066FF' }}> Products</span>
                     <br />
-                    <span style={{ color: '#0066FF' }}>Simplified</span>
+                    <span style={{ color: '#1E3A8A' }}>Simplified</span>
                   </h1>
                   
                   <p className="text-xl lg:text-2xl text-gray-600 leading-relaxed max-w-2xl">
@@ -352,25 +354,38 @@ export default function EnhancedWelcomePage({ onGetStarted }: EnhancedWelcomePag
         </section>
 
         {/* Stats Section */}
-        <animated.section style={statsSpring} className="px-6 py-16 bg-white/50 backdrop-blur-sm">
+        <motion.section 
+          ref={statsRef}
+          initial={{ opacity: 0, y: 50 }}
+          animate={isStatsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="px-6 py-16 bg-white/50 backdrop-blur-sm"
+        >
           <div className="max-w-7xl mx-auto">
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
               {stats.map((stat, index) => (
                 <motion.div
                   key={stat.label}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 1.2 + index * 0.1 }}
+                  initial={{ opacity: 0, y: 30, scale: 0.9 }}
+                  animate={isStatsInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 30, scale: 0.9 }}
+                  transition={{ 
+                    duration: 0.6, 
+                    delay: isStatsInView ? index * 0.1 : 0,
+                    ease: "easeOut"
+                  }}
                   className="text-center"
                 >
                   <div className="text-4xl lg:text-5xl font-bold bg-gradient-to-r from-primary-600 to-purple-600 bg-clip-text text-transparent mb-2">
                     {stat.prefix}
-                    <CountUp
-                      end={stat.value}
-                      duration={2.5}
-                      delay={1.5}
-                      decimals={stat.decimals || 0}
-                    />
+                    {isStatsInView && (
+                      <CountUp
+                        start={0}
+                        end={stat.value}
+                        duration={2.5}
+                        delay={index * 0.1}
+                        decimals={stat.decimals || 0}
+                      />
+                    )}
                     {stat.suffix}
                   </div>
                   <div className="text-gray-600 font-medium">{stat.label}</div>
@@ -378,18 +393,24 @@ export default function EnhancedWelcomePage({ onGetStarted }: EnhancedWelcomePag
               ))}
             </div>
           </div>
-        </animated.section>
+        </motion.section>
 
         {/* Features Grid */}
-        <section className="px-6 py-16">
+        <motion.section 
+          ref={featuresRef}
+          initial={{ opacity: 0 }}
+          animate={isFeaturesInView ? { opacity: 1 } : { opacity: 0 }}
+          transition={{ duration: 0.6 }}
+          className="px-6 py-16"
+        >
           <div className="max-w-7xl mx-auto">
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.8 }}
+              initial={{ opacity: 0, y: 40 }}
+              animate={isFeaturesInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
               className="text-center mb-16"
             >
-              <h2 className="text-4xl lg:text-5xl font-bold mb-6" style={{ color: '#0066FF' }}>
+              <h2 className="text-4xl lg:text-5xl font-bold mb-6" style={{ color: '#1E3A8A' }}>
                 Why Choose Hilbert Investment Solutions?
               </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -403,15 +424,35 @@ export default function EnhancedWelcomePage({ onGetStarted }: EnhancedWelcomePag
                 return (
                   <motion.div
                     key={feature.title}
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 1 + index * 0.1 }}
+                    initial={{ opacity: 0, y: 50, scale: 0.9 }}
+                    animate={isFeaturesInView ? 
+                      { opacity: 1, y: 0, scale: 1 } : 
+                      { opacity: 0, y: 50, scale: 0.9 }
+                    }
+                    transition={{ 
+                      duration: 0.6, 
+                      delay: isFeaturesInView ? 0.4 + index * 0.1 : 0,
+                      ease: "easeOut"
+                    }}
                     whileHover={{ y: -10, scale: 1.02 }}
                     className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100"
                   >
-                    <div className={`w-16 h-16 rounded-2xl bg-gradient-to-r ${feature.color} flex items-center justify-center mb-6`}>
+                    <motion.div 
+                      initial={{ scale: 0, rotate: -90 }}
+                      animate={isFeaturesInView ? 
+                        { scale: 1, rotate: 0 } : 
+                        { scale: 0, rotate: -90 }
+                      }
+                      transition={{ 
+                        duration: 0.5, 
+                        delay: isFeaturesInView ? 0.6 + index * 0.1 : 0,
+                        type: "spring",
+                        stiffness: 200
+                      }}
+                      className={`w-16 h-16 rounded-2xl bg-gradient-to-r ${feature.color} flex items-center justify-center mb-6`}
+                    >
                       <Icon className="w-8 h-8 text-white" />
-                    </div>
+                    </motion.div>
                     <h3 className="text-xl font-bold text-gray-900 mb-3">
                       {feature.title}
                     </h3>
@@ -423,7 +464,7 @@ export default function EnhancedWelcomePage({ onGetStarted }: EnhancedWelcomePag
               })}
             </div>
           </div>
-        </section>
+        </motion.section>
       </div>
     </div>
   )
