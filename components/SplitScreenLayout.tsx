@@ -197,35 +197,6 @@ export default function SplitScreenLayout({ children, currentStep, totalSteps, p
           style={backgroundSpring}
           className={`absolute inset-0 bg-gradient-to-br ${content.gradient}`}
         >
-          {/* Animated Background Elements */}
-          <div className="absolute inset-0">
-            <motion.div
-              className="absolute top-20 left-10 w-32 h-32 bg-white/10 rounded-full blur-xl"
-              animate={{ 
-                x: [0, 30, 0],
-                y: [0, -20, 0],
-                scale: [1, 1.1, 1],
-              }}
-              transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-            />
-            <motion.div
-              className="absolute bottom-32 right-16 w-24 h-24 bg-white/20 rounded-full blur-lg"
-              animate={{ 
-                x: [0, -20, 0],
-                y: [0, 15, 0],
-                scale: [1, 0.9, 1],
-              }}
-              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-            />
-            <motion.div
-              className="absolute top-1/2 right-8 w-16 h-16 bg-yellow-300/30 rounded-full blur-md"
-              animate={{ 
-                rotate: [0, 360],
-                scale: [1, 1.2, 1],
-              }}
-              transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
-            />
-          </div>
 
           <div className="relative h-full flex flex-col justify-between p-12 text-white">
             {/* Header */}

@@ -193,6 +193,11 @@ export default function MicroStepOnboarding({ onComplete, onBackToWelcome, onSte
     onStepChange?.(currentStepIndex)
   }, [currentStepIndex, onStepChange])
 
+  // Ensure parent is notified on initial mount
+  useEffect(() => {
+    onStepChange?.(0)
+  }, [onStepChange])
+
   // Spring animation for progress and step transitions
   const slideSpring = useSpring({
     transform: `translateX(${currentStepIndex * -100}%)`,
