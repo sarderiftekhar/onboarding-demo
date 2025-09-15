@@ -165,8 +165,11 @@ const stepContent: LeftPanelContent[] = [
 ]
 
 export default function SplitScreenLayout({ children, currentStep, totalSteps, progress }: SplitScreenLayoutProps) {
-  const content = stepContent[currentStep] || stepContent[0]
+  // Ensure we always have valid content, defaulting to step 0
+  const content = stepContent[currentStep >= 0 ? currentStep : 0] || stepContent[0]
   const Icon = content.icon
+  
+  console.log('SplitScreenLayout render - currentStep:', currentStep, 'content:', content.title)
 
   // Animated progress ring
   const progressSpring = useSpring({
@@ -174,14 +177,6 @@ export default function SplitScreenLayout({ children, currentStep, totalSteps, p
     config: config.slow,
   })
 
-  // Background animation
-  const backgroundSpring = useSpring({
-    from: { opacity: 0 },
-    to: { opacity: 1 },
-    config: config.molasses,
-    reset: true,
-    key: currentStep,
-  })
 
   return (
     <div className="min-h-screen flex overflow-hidden">
@@ -193,8 +188,7 @@ export default function SplitScreenLayout({ children, currentStep, totalSteps, p
           background: `linear-gradient(135deg, var(--tw-gradient-stops))`,
         }}
       >
-        <animated.div 
-          style={backgroundSpring}
+        <div 
           className={`absolute inset-0 bg-gradient-to-br ${content.gradient}`}
         >
 
@@ -216,15 +210,7 @@ export default function SplitScreenLayout({ children, currentStep, totalSteps, p
             </motion.div>
 
             {/* Content */}
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={currentStep}
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -30 }}
-                transition={{ duration: 0.5, ease: "easeOut" }}
-                className="flex-1 flex flex-col justify-center space-y-8"
-              >
+            <div className="flex-1 flex flex-col justify-center space-y-8">
                 {/* Icon */}
                 <motion.div
                   initial={{ scale: 0, rotate: -90 }}
@@ -317,8 +303,7 @@ export default function SplitScreenLayout({ children, currentStep, totalSteps, p
                     ))}
                   </motion.div>
                 )}
-              </motion.div>
-            </AnimatePresence>
+            </div>
 
             {/* Progress Circle */}
             <motion.div
@@ -362,7 +347,7 @@ export default function SplitScreenLayout({ children, currentStep, totalSteps, p
               </p>
             </motion.div>
           </div>
-        </animated.div>
+        </div>
       </motion.div>
 
       {/* Right Panel - Content */}

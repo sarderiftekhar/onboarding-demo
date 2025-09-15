@@ -14,8 +14,8 @@ export default function Home() {
   const progress = ((currentStep + 1) / totalSteps) * 100
 
   const handleGetStarted = () => {
+    setCurrentStep(0) // Ensure step is 0 first
     setCurrentView('onboarding')
-    setCurrentStep(0)
   }
 
   const handleOnboardingComplete = (data: Record<string, any>) => {
