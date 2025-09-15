@@ -1,28 +1,40 @@
 'use client'
 
 import { useState } from 'react'
-import WelcomePage from '@/components/WelcomePage'
-import OnboardingLayout from '@/components/OnboardingLayout'
-import OnboardingFlow from '@/components/OnboardingFlow'
+import EnhancedWelcomePage from '@/components/EnhancedWelcomePage'
+import SplitScreenLayout from '@/components/SplitScreenLayout'
+import MicroStepOnboarding from '@/components/MicroStepOnboarding'
 
 export default function Home() {
   const [currentView, setCurrentView] = useState<'welcome' | 'onboarding'>('welcome')
+  const [currentStep, setCurrentStep] = useState(0)
+  
+  // Calculate progress based on 10 micro-steps
+  const totalSteps = 10
+  const progress = ((currentStep + 1) / totalSteps) * 100
 
   const handleGetStarted = () => {
     setCurrentView('onboarding')
+    setCurrentStep(0)
   }
 
-  const handleBackToWelcome = () => {
-    setCurrentView('welcome')
+  const handleOnboardingComplete = (data: Record<string, any>) => {
+    console.log('Onboarding completed with data:', data)
+    // Handle completion - could redirect to dashboard or show success
+    alert('Onboarding completed successfully!')
   }
 
   if (currentView === 'welcome') {
-    return <WelcomePage onGetStarted={handleGetStarted} />
+    return <EnhancedWelcomePage onGetStarted={handleGetStarted} />
   }
 
   return (
-    <OnboardingLayout onBack={handleBackToWelcome} showBackButton={true}>
-      <OnboardingFlow />
-    </OnboardingLayout>
+    <SplitScreenLayout 
+      currentStep={currentStep} 
+      totalSteps={totalSteps}
+      progress={progress}
+    >
+      <MicroStepOnboarding onComplete={handleOnboardingComplete} />
+    </SplitScreenLayout>
   )
 }
