@@ -63,15 +63,14 @@ export default function WelcomePage({ onGetStarted }: WelcomePageProps) {
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             transition={{ type: "spring", stiffness: 200, delay: 0.2 }}
-            className="flex items-center space-x-3"
+            className="flex items-center"
           >
-            <div className="w-10 h-10 bg-primary-600 rounded-xl flex items-center justify-center">
-              <span className="text-white font-bold text-lg">H</span>
-            </div>
-            <span className="text-2xl font-bold text-gray-900">HILBERT</span>
-            <span className="text-sm text-primary-600 bg-primary-100 px-3 py-1 rounded-full">
-              Financial Solutions
-            </span>
+            <img 
+              src="/images/logo_hilbert_blanc.png" 
+              alt="Hilbert Logo" 
+              className="object-contain"
+              style={{ width: '15em' }}
+            />
           </motion.div>
           
           <motion.div

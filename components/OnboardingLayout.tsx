@@ -28,15 +28,14 @@ export default function OnboardingLayout({
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             transition={{ type: "spring", stiffness: 200 }}
-            className="flex items-center space-x-3"
+            className="flex items-center"
           >
-            <div className="w-10 h-10 bg-primary-600 rounded-xl flex items-center justify-center">
-              <span className="text-white font-bold text-lg">H</span>
-            </div>
-            <div>
-              <span className="text-xl font-bold text-gray-900">HILBERT</span>
-              <div className="text-xs text-gray-500">Client Onboarding</div>
-            </div>
+            <img 
+              src="/images/logo_hilbert_blanc.png" 
+              alt="Hilbert Logo" 
+              className="object-contain"
+              style={{ width: '15em' }}
+            />
           </motion.div>
 
           {/* Back Button */}

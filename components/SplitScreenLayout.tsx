@@ -234,14 +234,13 @@ export default function SplitScreenLayout({ children, currentStep, totalSteps, p
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
             >
-              <div className="flex items-center space-x-3 mb-8">
-                <div className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center">
-                  <span className="text-white font-bold text-xl">H</span>
-                </div>
-                <div>
-                  <h1 className="text-2xl font-bold">HILBERT</h1>
-                  <p className="text-white/80 text-sm">Financial Solutions</p>
-                </div>
+              <div className="flex items-center justify-center mb-8">
+                <img 
+                  src="/images/logo_hilbert_blanc.png" 
+                  alt="Hilbert Logo" 
+                  className="object-contain"
+                  style={{ width: '15em' }}
+                />
               </div>
             </motion.div>
 

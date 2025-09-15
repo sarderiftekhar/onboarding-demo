@@ -138,15 +138,14 @@ export default function EnhancedWelcomePage({ onGetStarted }: EnhancedWelcomePag
           <div className="max-w-7xl mx-auto flex items-center justify-between">
             <motion.div
               whileHover={{ scale: 1.05 }}
-              className="flex items-center space-x-3"
+              className="flex items-center"
             >
-              <div className="w-12 h-12 bg-gradient-to-r from-primary-600 to-purple-600 rounded-2xl flex items-center justify-center">
-                <span className="text-white font-bold text-xl">H</span>
-              </div>
-              <div>
-                <h1 className="text-2xl font-bold text-gray-900">HILBERT</h1>
-                <p className="text-sm text-gray-600">Financial Solutions</p>
-              </div>
+              <img 
+                src="/images/logo_hilbert_noir.png" 
+                alt="Hilbert Logo" 
+                className="object-contain"
+                style={{ width: '15em' }}
+              />
             </motion.div>
 
             <motion.div

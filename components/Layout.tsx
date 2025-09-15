@@ -135,10 +135,12 @@ function Sidebar() {
           transition={{ type: "spring", stiffness: 200 }}
           className="flex items-center"
         >
-          <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center mr-3">
-            <span className="text-primary-600 font-bold text-sm">H</span>
-          </div>
-          <span className="text-white font-bold text-lg">HILBERT</span>
+          <img 
+            src="/images/logo_hilbert_blanc.png" 
+            alt="Hilbert Logo" 
+            className="object-contain filter invert"
+            style={{ width: '15em' }}
+          />
         </motion.div>
       </div>
 
