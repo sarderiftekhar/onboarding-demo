@@ -1,0 +1,79 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply text-gray-900 font-sans;
+    font-feature-settings: 'rlig' 1, 'calt' 1;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-semibold tracking-tight;
+  }
+
+  h1 { @apply text-4xl lg:text-5xl; }
+  h2 { @apply text-3xl lg:text-4xl; }
+  h3 { @apply text-2xl lg:text-3xl; }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-primary-600 text-white px-8 py-4 rounded-xl font-semibold hover:bg-primary-700 transition-all duration-200 transform hover:scale-105 active:scale-95 shadow-lg hover:shadow-xl;
+  }
+  
+  .btn-secondary {
+    @apply border-2 border-gray-200 text-gray-700 px-8 py-4 rounded-xl font-semibold hover:bg-gray-50 hover:border-gray-300 transition-all duration-200 shadow-sm hover:shadow-md;
+  }
+  
+  .form-input {
+    @apply w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all duration-200 bg-white text-gray-900 placeholder-gray-400;
+  }
+  
+  .form-select {
+    @apply w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all duration-200 bg-white cursor-pointer text-gray-900;
+  }
+  
+  .sidebar-link {
+    @apply flex items-center px-4 py-3 text-gray-700 hover:bg-primary-50 hover:text-primary-600 transition-all duration-200 rounded-lg mx-2 cursor-pointer;
+  }
+  
+  .sidebar-link.active {
+    @apply bg-primary-100 text-primary-700 border-r-2 border-primary-500;
+  }
+  
+  .card {
+    @apply bg-white rounded-2xl shadow-sm border-2 border-gray-100 p-8 hover:shadow-lg hover:border-gray-200 transition-all duration-200;
+  }
+  
+  .progress-step {
+    @apply w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium border-2 transition-all duration-200;
+  }
+  
+  .progress-step.active {
+    @apply bg-primary-500 border-primary-500 text-white;
+  }
+  
+  .progress-step.completed {
+    @apply bg-green-500 border-green-500 text-white;
+  }
+  
+  .progress-step.pending {
+    @apply bg-gray-100 border-gray-300 text-gray-500;
+  }
+  
+  .animate-gradient {
+    background-size: 300% 300%;
+    animation: gradient 3s ease infinite;
+  }
+  
+  @keyframes gradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+}
